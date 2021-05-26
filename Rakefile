@@ -1,10 +1,7 @@
 require 'rake'
 require "rake/testtask"
 
-
-task default: "test"
-tests_num = Dir["test/*_test.rb"].count
+task default: %w[test]
 Rake::TestTask.new do |task|
   task.pattern = "test/*_test.rb"
 end
-puts "** Running #{tests_num} tests **"
