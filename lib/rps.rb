@@ -16,11 +16,12 @@ module RockPaperScissors
 
   def play(player_choice, test = nil)
 
-    if MOVES.dig(matchup(player_choice)) == computer_choice(test)
-    "Computer chose #{computer_choice} too. It's a tie. Try again?"
-    
+    if MOVES.dig(player_choice) == computer_choice(test)
+      "Computer chose #{computer_choice} too. It's a tie. Try again?"
+
     elsif MATCHES.dig(matchup(player_choice, test)).nil?
       'Unrecognized move. Try again?'
+    
     else
       MATCHES.dig(matchup(player_choice, test))
     end
