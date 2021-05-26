@@ -14,24 +14,30 @@ module RockPaperScissors
     ["s", "paper"] => "Computer chose paper. Scissors cut paper. You win.",
   }.freeze
 
-  def game(player_choice)
+  def play(player_choice, test = nil)
 
-    if MATCHES.dig(matchup(player_choice)).nil?
+    if MOVES.dig(matchup(player_choice)) == computer_choice(test)
+    "Computer chose #{computer_choice} too. It's a tie. Try again?"
+    
+    elsif MATCHES.dig(matchup(player_choice, test)).nil?
       'Unrecognized move. Try again?'
-    elsif MOVES.dig(choice) == computer_choice
-      "Computer chose #{computer_choice} too. It's a tie. Try again?"
     else
-      MATCHES.dig(matchup(player_choice))
-    end
-
-    def computer_choice
-      @computer_choice ||= %w[rock paper scissors].sample
-    end
-
-    def matchup(move)
-      [move, computer_choice ]
+      MATCHES.dig(matchup(player_choice, test))
     end
 
   end
+
+  def computer_choice(default = nil)
+    if default
+      @computer_choice ||= default
+    else
+      @computer_choice ||= %w[rock paper scissors].sample
+    end
+  end
+
+  def matchup(move, test)
+    [move, computer_choice(test) ]
+  end
+
   
 end
