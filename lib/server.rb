@@ -7,7 +7,8 @@ end
 
 get '/info' do
   "Welcome to the Rock/Paper/Scissors game! \n
-   Send a game move to the '/play' endpoint as a POST \n
+   Send a game move to the '/play' endpoint as a POST using a 'move' param\n
+   Example: http://localhost:4567/play?move=s \n
    Eligible moves are: 'r' for rock, 'p' for paper, 's' for scissors
    "
 end
