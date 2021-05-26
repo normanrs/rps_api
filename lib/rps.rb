@@ -18,7 +18,7 @@ module RockPaperScissors
     if MOVES.dig(player_choice) == computer_choice(test)
       "Computer chose #{computer_choice} too. It's a tie. Try again?"
 
-    elsif player_choice == 'h' || player_choice == 'hammer'
+    elsif %w[h hammer].include?(player_choice)
       'Hammer beats everything. You win. Well played.'
 
     elsif MATCHES.dig(matchup(player_choice, test)).nil?
