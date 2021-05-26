@@ -1,37 +1,36 @@
 module RockPaperScissors
   MOVES = {
-    'r' => 'rock', 
-    'p' => 'paper', 
+    'r' => 'rock',
+    'p' => 'paper',
     's' => 'scissors'
   }.freeze
 
   MATCHES = {
-    ["r", "paper"] => "Computer chose paper. Paper wraps rock. Computer wins.",
-    ["r", "scissors"] => "Computer chose scissors. Rock destroys scissors. You win.",
-    ["p", "rock"] => "Computer chose rock. Paper wraps rock. You win.",
-    ["p", "scissors"] => "Computer chose scissors. Scissors cut paper. Computer wins.",
-    ["s", "rock"] => "Computer chose rock. Rock destroys scissors. Computer wins.",
-    ["s", "paper"] => "Computer chose paper. Scissors cut paper. You win.",
+    %w[r paper] => 'Computer chose paper. Paper wraps rock. Computer wins.',
+    %w[r scissors] => 'Computer chose scissors. Rock destroys scissors. You win.',
+    %w[p rock] => 'Computer chose rock. Paper wraps rock. You win.',
+    %w[p scissors] => 'Computer chose scissors. Scissors cut paper. Computer wins.',
+    %w[s rock] => 'Computer chose rock. Rock destroys scissors. Computer wins.',
+    %w[s paper] => 'Computer chose paper. Scissors cut paper. You win.'
   }.freeze
 
-  def game(player_choice)
-
-    if MATCHES.dig(matchup(player_choice)).nil?
-      'Unrecognized move. Try again?'
-    elsif MOVES.dig(choice) == computer_choice
+  def play(player_choice, test = nil)
+    if MOVES.dig(player_choice) == computer_choice(test)
       "Computer chose #{computer_choice} too. It's a tie. Try again?"
+
+    elsif MATCHES.dig(matchup(player_choice, test)).nil?
+      'Unrecognized move. Try again?'
+
     else
-      MATCHES.dig(matchup(player_choice))
+      MATCHES.dig(matchup(player_choice, test))
     end
-
-    def computer_choice
-      @computer_choice ||= %w[rock paper scissors].sample
-    end
-
-    def matchup(move)
-      [move, computer_choice ]
-    end
-
   end
-  
+
+  def computer_choice(default = nil)
+    @computer_choice ||= default || %w[rock paper scissors].sample
+  end
+
+  def matchup(move, test)
+    [move, computer_choice(test)]
+  end
 end
