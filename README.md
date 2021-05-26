@@ -7,7 +7,8 @@ A simple API that plays rock/paper/scissors.
 
 ## Setup:
 1. Clone this repo.
-2. `bundle install` to install gem dependencies
+2. Open a terminal and CD into the repo project directory
+3. `bundle install` to install gem dependencies
 
 ## Run unit tests:
 `bundle exec rake` will run all unit tests.
