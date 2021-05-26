@@ -11,5 +11,6 @@ get '/info' do
 end
 
 post '/play' do
-  require 'pry'; binding.pry
+  game = Game.new('r')
+  game.result.to_json
 end
